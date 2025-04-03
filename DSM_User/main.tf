@@ -74,3 +74,22 @@ resource "kubernetes_manifest" "terra-pg-cluster" {
     delete = "15m"
   }
 }
+
+####### Outputs for follow-up scripts #######
+
+output "postgres_cluster_dbname" {
+
+  value = kubernetes_manifest.terra-pg.manifest.spec.databaseName
+
+}
+
+####### Outputs from status section #######
+
+data "kubernetes_resources" "resource_output" {
+  api_version    = "databases.dataservices.vmware.com/v1alpha1"
+  kind           = "PostgresCluster"
+}
+
+output "host_ip" {
+  value = data.kubernetes_resources.resource_output.objects.1.status.connection.host
+}
