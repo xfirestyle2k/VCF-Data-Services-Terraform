@@ -25,6 +25,13 @@ resource "kubernetes_manifest" "terra-pg-cluster" {
         "dsm.vmware.com/aria-automation-instance": "Instance"
         "dsm.vmware.com/created-in": "terraform"
         "dsm.vmware.com/aria-automation-project" = "Terraform-Test"
+    ####        Lock feature        ####   
+        # "dsm.vmware.com/locked-status": "locked"
+        # "dsm.vmware.com/locked-status": "unlocked-for-delete"
+        # "dsm.vmware.com/unlock-reason": "DB can be deleted"        
+        # "dsm.vmware.com/locked-status": "unlocked-for-edit"
+        # "dsm.vmware.com/unlock-reason": "increase Storage"
+    ####        Lock feature        ####   
       }
     }
     "spec" = {
