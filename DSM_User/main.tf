@@ -70,6 +70,11 @@ resource "kubernetes_manifest" "terra-pg-cluster" {
     "metadata.labels",
     "metadata.annotations"
     ]
+
+  field_manager {
+    # force field manager conflicts to be overridden
+    force_conflicts = true
+  }  
   wait {
     condition {
       type = "Ready"
