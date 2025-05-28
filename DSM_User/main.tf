@@ -7,9 +7,13 @@ terraform {
   }
 }
 
+
 provider "kubernetes" {
   config_path = "dsm-admin.kubeconfig"
+  ####    Ignore Annotations required for upgrading     ####
+  ignore_annotations = ["dsm\\.vmware\\.com\\/major-version-upgrade-request", "dsm\\.vmware\\.com\\/dsm-system-config-version", "dsm\\.vmware\\.com\\/observed-annotations"]
 }
+
 
 resource "kubernetes_manifest" "terra-pg-cluster" {
   manifest = {
